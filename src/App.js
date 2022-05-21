@@ -5,6 +5,7 @@ import Home from './Components/Pages/Home/Home';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { useEffect } from 'react';
+import Footer from './Components/Shared/Footer/Footer';
 
 function App() {
   useEffect(() => {
@@ -14,6 +15,7 @@ function App() {
     <div>
       <Navbar />
       <Home />
+      <Footer />
     </div>
   );
 }
