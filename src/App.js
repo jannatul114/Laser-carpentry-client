@@ -10,11 +10,17 @@ import { Route, Routes } from 'react-router-dom';
 import Login from './Components/Pages/Authintications/Login/Login';
 import Registar from './Components/Pages/Authintications/Registar/Registar';
 import Blogs from './Components/Pages/Blogs/Blogs';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Purchase from './Components/Pages/Purchase/Purchase';
 import RequireAuth from './Components/Pages/Authintications/RequireAuth/RequireAuth';
 import NotFound from './Components/Pages/NotFound/NotFound';
+import DashBoard from './Components/Pages/Dashboard/DashBoard';
+
+import AddReview from './Components/Pages/Dashboard/AddReview';
+import MyOrders from './Components/Pages/Dashboard/MyOrders';
+import MyPortfolio from './Components/Pages/MyPortfolio/MyPortfolio';
+import MyProfile from './Components/Pages/Dashboard/MyProfile';
 
 
 function App() {
@@ -37,6 +43,12 @@ function App() {
           </RequireAuth>}>
         </Route>
         <Route path='*' element={<NotFound />}></Route>
+        <Route path='/dashboard' element={<RequireAuth><DashBoard /></RequireAuth>}>
+          <Route index element={<MyProfile />}></Route>
+          <Route path='addreview' element={<AddReview />}></Route>
+          <Route path='myorders' element={<MyOrders />}></Route>
+        </Route>
+        <Route path='myportfolio' element={<MyPortfolio />}></Route>
       </Routes>
       <Footer />
     </div>

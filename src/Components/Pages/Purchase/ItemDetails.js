@@ -4,7 +4,6 @@ const ItemDetails = ({ item }) => {
     const { _id, name, img, quantity, order, description, price } = item;
     return (
         <div>
-
             <div>
 
                 <div class="flex flex-col justify-center ">
@@ -20,7 +19,7 @@ const ItemDetails = ({ item }) => {
                             <p className=''><span className='font-bold'>price:</span> ${price}</p>
                             <p className=''><span className='font-bold'>Quantity:</span> ${quantity}</p>
                             <p className=''><span className='font-bold'>Minimum-order:</span> {price}</p>
-                            <p className=''><span className='font-bold'>Product ID:</span> {price}</p>
+                            <p className=''><span className='font-bold'>Product ID:</span> {_id}</p>
 
 
                         </div>

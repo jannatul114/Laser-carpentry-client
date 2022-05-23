@@ -13,7 +13,6 @@ const Tools = () => {
             .then(res => res.json())
             .then(data => setTools(data))
 
-        console.log(tools[0]?.img);
     }, [])
 
     const handlePurchase = (id) => {

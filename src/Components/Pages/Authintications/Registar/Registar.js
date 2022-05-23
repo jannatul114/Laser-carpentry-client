@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import auth from '../../../../firebase.init';
 // import { useCreateUserWithEmailAndPassword } from 'firebase'
-import { useCreateUserWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Loading from '../../../Shared/Loading/Loading';
@@ -17,18 +17,19 @@ const Registar = () => {
     ] = useCreateUserWithEmailAndPassword(auth);
     const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
     const navigate = useNavigate();
+    const [updateProfile, updating, updateError] = useUpdateProfile(auth);
 
     useEffect(() => {
-        if (error || gError) {
-            toast.error(error.message || gError.message)
+        if (error || gError || updateError) {
+            toast.error(error.message || gError.message || updateError)
         }
-    }, [error, gError])
+    }, [error, gError || updateError])
     if (user || gUser) {
         navigate(from, { replace: true });
 
     }
 
-    if (loading || gLoading) {
+    if (loading || gLoading || updating) {
         return <Loading />
     }
 
@@ -36,11 +37,13 @@ const Registar = () => {
         signInWithGoogle();
     }
 
-    const handleRegistar = event => {
+    const handleRegistar = async event => {
         event.preventDefault();
+        const name = event.target.name.value;
         const email = event.target.email.value;
         const password = event.target.password.value;
-        createUserWithEmailAndPassword(email, password);
+        await createUserWithEmailAndPassword(email, password);
+        await updateProfile({ displayName: name })
 
     }
     return (
@@ -54,7 +57,7 @@ const Registar = () => {
                             <label class="label">
                                 <span class="label-text">Name</span>
                             </label>
-                            <input type="text" placeholder="name" class="input input-bordered" />
+                            <input type="text" placeholder="name" name="name" class="input input-bordered" required />
                         </div>
                         <div class="form-control">
                             <label class="label">
