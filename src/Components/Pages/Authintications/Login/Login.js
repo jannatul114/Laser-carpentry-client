@@ -1,10 +1,13 @@
 import React, { useEffect } from 'react';
 import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../../../firebase.init';
+import Loading from '../../../Shared/Loading/Loading';
 
 const Login = () => {
+    const location = useLocation()
+    let from = location.state?.from?.pathname || "/";
 
     const [
         signInWithEmailAndPassword,
@@ -29,10 +32,10 @@ const Login = () => {
     }, [error, gError])
 
     if (user || gUser) {
-        navigate('/home')
+        navigate(from, { replace: true });
     }
     if (loading || gLoading) {
-        return <loading />
+        return <Loading />
     }
 
     const handleGoogleSignin = () => {

@@ -1,26 +1,31 @@
 [
     {
         "img": "https://image.pngaaa.com/400/1721400-middle.png",
+        "name": "John",
         "review": "your imported products are amaizing. good at quality. I am your regular customer and also satisfyed.",
         "ratings": 5
     },
     {
         "img": "https://img.lovepik.com/element/45001/3052.png_860.png",
+        "name": "Smith",
         "review": "your imported products are amaizing. good at quality. I am your regular customer and also satisfyed.",
         "ratings": 4
     },
     {
         "img": "https://www.shareicon.net/data/512x512/2016/09/15/829453_user_512x512.png",
+        "name": "Marlin",
         "review": "your imported products are amaizing. good at quality. I am your regular customer and also satisfyed",
         "ratings": 5
     },
     {
         "img": "https://e7.pngegg.com/pngimages/122/453/png-clipart-computer-icons-user-profile-avatar-female-profile-heroes-head.png",
+        "name": "Annie",
         "review": "your imported products are amaizing. good at quality. I am your regular customer and also satisfyed.",
         "ratings": 4
     },
     {
         "img": "https://www.shareicon.net/data/512x512/2016/09/15/829459_man_512x512.png",
+        "name": "Max",
         "review": "your imported products are amaizing. good at quality. I am your regular customer and also satisfyed.",
         "ratings": 3
     }

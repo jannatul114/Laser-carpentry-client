@@ -1,9 +1,11 @@
 import React from 'react';
-
+import loader from '../../../images/loading.gif';
 const Loading = () => {
     return (
-        <div>
-            <h1>loading...</h1>
+        <div className='flex justify-center'>
+            <div className='w-80 h-80'>
+                <img src={loader} className='' alt="" />
+            </div>
         </div>
     );
 };

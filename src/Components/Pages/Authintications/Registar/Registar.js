@@ -2,9 +2,12 @@ import React, { useEffect } from 'react';
 import auth from '../../../../firebase.init';
 // import { useCreateUserWithEmailAndPassword } from 'firebase'
 import { useCreateUserWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import Loading from '../../../Shared/Loading/Loading';
 const Registar = () => {
+    const location = useLocation()
+    let from = location.state?.from?.pathname || "/";
 
     const [
         createUserWithEmailAndPassword,
@@ -21,12 +24,12 @@ const Registar = () => {
         }
     }, [error, gError])
     if (user || gUser) {
-        navigate('/home')
+        navigate(from, { replace: true });
 
     }
 
     if (loading || gLoading) {
-        return <loading />
+        return <Loading />
     }
 
     const handleGoogleLogin = () => {

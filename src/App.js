@@ -12,6 +12,9 @@ import Registar from './Components/Pages/Authintications/Registar/Registar';
 import Blogs from './Components/Pages/Blogs/Blogs';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Purchase from './Components/Pages/Purchase/Purchase';
+import RequireAuth from './Components/Pages/Authintications/RequireAuth/RequireAuth';
+import NotFound from './Components/Pages/NotFound/NotFound';
 
 
 function App() {
@@ -28,6 +31,12 @@ function App() {
         <Route path='/login' element={<Login />}></Route>
         <Route path='/registar' element={<Registar />}></Route>
         <Route path='/blogs' element={<Blogs />}></Route>
+        <Route path='/purchase/:id' element={
+          <RequireAuth>
+            <Purchase />
+          </RequireAuth>}>
+        </Route>
+        <Route path='*' element={<NotFound />}></Route>
       </Routes>
       <Footer />
     </div>
