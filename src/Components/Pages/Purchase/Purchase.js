@@ -25,7 +25,7 @@ const Purchase = () => {
         event.preventDefault();
         console.log(data);
 
-        fetch(`https://fierce-sands-20967.herokuapp.com/orders?email=${data.email}`, {
+        fetch(`https://fierce-sands-20967.herokuapp.com/orders`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -57,6 +57,14 @@ const Purchase = () => {
                             </label>
 
                             <input type="text" value={user?.displayName} readOnly {...register("name")} className="input input-bordered w-full" />
+                        </div>
+
+                        <div className="form-control w-full">
+                            <label className="label">
+                                <span className="label-text">Tools Name</span>
+                            </label>
+
+                            <input type="text" value={item?.name} readOnly {...register("tool")} className="input input-bordered w-full" />
                         </div>
 
                         <div className="form-control w-full">

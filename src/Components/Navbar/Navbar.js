@@ -28,7 +28,7 @@ const Navbar = () => {
                                 user ? <button className='btn btn-primary'>Signout</button> : <li><NavLink to={'/login'}>Login</NavLink></li>
                             }
                             <li><NavLink to={'/blogs'}>Blogs</NavLink></li>
-                            <li><NavLink to={'/myportfolio'}>My Portfolio</NavLink></li>
+                            <li><NavLink to={'/'}>My Portfolio</NavLink></li>
 
                         </ul>
                     </div>
