@@ -5,6 +5,8 @@ import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfil
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Loading from '../../../Shared/Loading/Loading';
+import useToken from '../../../../hooks/useToken';
+
 const Registar = () => {
     const location = useLocation()
     let from = location.state?.from?.pathname || "/";
@@ -18,13 +20,16 @@ const Registar = () => {
     const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
     const navigate = useNavigate();
     const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+    const [token] = useToken(user || gUser)
 
     useEffect(() => {
         if (error || gError || updateError) {
-            toast.error(error.message || gError.message || updateError)
+            toast.error(error?.message || gError?.message || updateError?.message)
         }
     }, [error, gError || updateError])
-    if (user || gUser) {
+
+
+    if (token) {
         navigate(from, { replace: true });
 
     }
@@ -32,6 +37,7 @@ const Registar = () => {
     if (loading || gLoading || updating) {
         return <Loading />
     }
+
 
     const handleGoogleLogin = () => {
         signInWithGoogle();
@@ -70,9 +76,7 @@ const Registar = () => {
                                 <span class="label-text">Password</span>
                             </label>
                             <input type="password" name='password' placeholder="password" class="input input-bordered" required />
-                            <label class="label">
-                                <a href="#" class="label-text-alt link link-hover">Forgot password?</a>
-                            </label>
+
                         </div>
                         <div class="form-control mt-6">
                             <button class="btn btn-primary">Registar</button>

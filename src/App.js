@@ -21,6 +21,8 @@ import AddReview from './Components/Pages/Dashboard/AddReview';
 import MyOrders from './Components/Pages/Dashboard/MyOrders';
 import MyPortfolio from './Components/Pages/MyPortfolio/MyPortfolio';
 import MyProfile from './Components/Pages/Dashboard/MyProfile';
+import AllUsers from './Components/Pages/Dashboard/AllUsers';
+import RequireAdmin from './Components/Pages/Authintications/RequireAdmin/RequireAdmin';
 
 
 function App() {
@@ -47,6 +49,7 @@ function App() {
           <Route index element={<MyProfile />}></Route>
           <Route path='addreview' element={<AddReview />}></Route>
           <Route path='myorders' element={<MyOrders />}></Route>
+          <Route path='allusers' element={<RequireAdmin><AllUsers /></RequireAdmin>}></Route>
         </Route>
         <Route path='myportfolio' element={<MyPortfolio />}></Route>
       </Routes>

@@ -105,7 +105,7 @@ const Purchase = () => {
                             <span className="label-text">Order Quanitity</span>
                         </label>
 
-                        <input type="number" placeholder="Your Order" {...register("order", {
+                        <input type="number"  {...register("order", {
                             required: true,
                             max: {
                                 value: item?.quantity,
@@ -115,7 +115,8 @@ const Purchase = () => {
                                 value: item?.order,
                                 message: 'Must be over or equal to minimum order quantity'
                             }
-                        })} className="input input-bordered w-full" />
+
+                        })} placeholder={item?.order} className="input input-bordered w-full" />
 
                         <label className="label">
                             <span className="label-text-alt text-error">

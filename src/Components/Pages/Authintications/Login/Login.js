@@ -3,6 +3,7 @@ import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-fireba
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../../../firebase.init';
+import useToken from '../../../../hooks/useToken';
 import Loading from '../../../Shared/Loading/Loading';
 
 const Login = () => {
@@ -17,6 +18,7 @@ const Login = () => {
     ] = useSignInWithEmailAndPassword(auth);
     const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
     const navigate = useNavigate()
+    const [token] = useToken(user || gUser)
 
     const handleLogin = event => {
         event.preventDefault()
@@ -31,7 +33,7 @@ const Login = () => {
         }
     }, [error, gError])
 
-    if (user || gUser) {
+    if (token) {
         navigate(from, { replace: true });
     }
     if (loading || gLoading) {
@@ -58,9 +60,7 @@ const Login = () => {
                                 <span class="label-text">Password</span>
                             </label>
                             <input type="password" placeholder="password" name='password' class="input input-bordered" />
-                            <label class="label">
-                                <a href="#" class="label-text-alt link link-hover">Forgot password?</a>
-                            </label>
+
                         </div>
                         <div class="form-control mt-6">
                             <button class="btn btn-primary">Login</button>

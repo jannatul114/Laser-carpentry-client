@@ -3,6 +3,16 @@ import React from 'react';
 const Review = ({ reviews }) => {
     const { review, name, img, ratings } = reviews;
 
+    const getratings = number => {
+        const ratings = [];
+        for (let i = 0; i < number; i++) {
+            ratings.push(<input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />)
+
+        }
+        return ratings;
+    }
+
+    const gettingRatings = getratings(ratings)
 
     return (
         <div id={reviews?._id} className="carousel-item w-full mx-auto justify-center">
@@ -18,9 +28,12 @@ const Review = ({ reviews }) => {
                 <h1 className='w-52 mx-auto'>{review}</h1>
                 <div className='rating'>
 
-                    {/* {
-                            ratings?.map((rating, index) => <p key={index}>{rating}</p>)
-                        } */}
+
+
+
+                    {
+                        gettingRatings?.map((rating, index) => <p key={index}>{rating}</p>)
+                    }
                 </div>
             </div>
         </div>
