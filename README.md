@@ -1,7 +1,7 @@
 # Laser-Carpentry-server-side
 
 ## This is about a carpentry manufecture website 
-Live link: [Create React App](https://github.com/facebook/create-react-app).
+Live link: [https://jenelix-manufecturer.web.app/](https://jenelix-manufecturer.web.app/).
 
 ## Technology used:
 * React
