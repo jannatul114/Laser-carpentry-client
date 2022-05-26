@@ -8,7 +8,7 @@ import auth from '../../../firebase.init';
 import Loading from '../../Shared/Loading/Loading';
 import SingleUser from './SingleUser';
 
-const AllUsers = () => {
+const MakeAdmin = () => {
     const [user] = useAuthState(auth);
     const { data: users, isLoading, refetch } = useQuery('users', () => fetch(`http://localhost:5000/users`, {
         method: 'GET',
@@ -22,8 +22,6 @@ const AllUsers = () => {
         return <Loading />
     }
 
-
-
     return (
         <div>
             {
@@ -33,7 +31,6 @@ const AllUsers = () => {
                             <thead>
                                 <tr>
                                     <th className='text-center'>1</th>
-                                    <th className='text-center'>Name</th>
                                     <th className='text-center'>Email</th>
                                     <th className='text-center'>role</th>
                                     <th className='text-center'>Action</th>
@@ -57,4 +54,4 @@ const AllUsers = () => {
     );
 };
 
-export default AllUsers;
+export default MakeAdmin;

@@ -7,7 +7,7 @@ import useAdmin from '../../../hooks/useAdmin';
 const DashBoard = () => {
     const [user] = useAuthState(auth)
     console.log(user);
-    const [admin, setAdmin] = useAdmin(user)
+    const [admin] = useAdmin(user)
     return (
         <div>
             <div class="drawer drawer-mobile">
@@ -24,7 +24,9 @@ const DashBoard = () => {
                         <li><NavLink to={'/dashboard/'}>My Profile</NavLink></li>
                         {!admin && <li><NavLink to={'/dashboard/addreview'}>Add Reviews</NavLink></li>}
                         {!admin && <li><NavLink to={'/dashboard/myorders'}>My Ordrs</NavLink></li>}
-                        {admin && <li><NavLink to={'/dashboard/allusers'}>All Users</NavLink></li>}
+                        {admin && <li><NavLink to={'/dashboard/makeadmin'}>Make Admin</NavLink></li>}
+                        {admin && <li><NavLink to={'/dashboard/addtools'}>Add Tools</NavLink></li>}
+                        {admin && <li><NavLink to={'/dashboard/managetools'}>Manage Tools</NavLink></li>}
                     </ul>
 
                 </div>

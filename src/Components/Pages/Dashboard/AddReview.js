@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import auth from '../../../firebase.init';
 
 const AddReview = () => {
@@ -20,7 +21,9 @@ const AddReview = () => {
             body: JSON.stringify(userReview)
         })
             .then(res => res.json())
-            .then(data => console.log(data))
+            .then(data =>
+                toast.success('review added')
+            )
 
     }
     return (

@@ -11,9 +11,18 @@ const Tools = () => {
             method: 'GET'
         })
             .then(res => res.json())
-            .then(data => setTools(data))
+            .then(data => {
+                if (data?.length >= 6) {
+                    const newTools = data.slice(0, 6);
+                    setTools(newTools)
+                }
+                else {
+                    setTools(data)
+                }
+            })
 
     }, [])
+
 
     const handlePurchase = (id) => {
         navigate(`/purchase/${id}`)

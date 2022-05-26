@@ -35,12 +35,12 @@ const Navbar = () => {
 
                         </ul>
                     </div>
-                    <a class="btn btn-ghost normal-case text-xl">carpenter manufecturer </a>
+                    <p class="btn btn-ghost normal-case text-xl">Carpenter Manufecturer </p>
                     <label for="my-drawer-2" class="btn btn-ghost drawer-button lg:hidden"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg></label>
                 </div>
                 <div class="navbar-end hidden lg:flex">
-                    <ul class="menu menu-horizontal p-0 m-0 gap-4">
-                        {/* {user && <button className='btn btn-ghost'>{user.name || user.displayName}</button>} */}
+                    <ul class="menu menu-horizontal p-0 m-0 gap-x-3">
+                        {user && <li><button className='btn btn-ghost'>{user.name || user.displayName?.length >= 6 ? user.name?.slice(0, 6) || user?.displayName.slice(0, 6) : user.name || user?.displayName}</button></li>}
                         <li><NavLink to={'/home'}>Home</NavLink></li>
                         {
                             user && <li><NavLink to={'/dashboard'}>Dashboard</NavLink></li>

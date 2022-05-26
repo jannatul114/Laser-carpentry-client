@@ -21,16 +21,17 @@ const SingleUser = ({ refetch, user, index }) => {
             })
             .then(data => {
                 console.log(data)
-                if (data.modifiedCount > 0) {
+                refetch()
+                if (data?.modifiedCount > 0) {
                     toast.success('successfully make an admin!')
-                    refetch()
+
                 }
             })
     }
     return (
         <tr>
-            <td ></td>
-            <td>{user?.name || user.displayName}</td>
+            <td >{index + 1}</td>
+
             <td>{user?.email}</td>
             <td>
                 <div>

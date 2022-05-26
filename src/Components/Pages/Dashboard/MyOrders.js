@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useQuery } from 'react-query';
+import { Link } from 'react-router-dom';
 import auth from '../../../firebase.init';
 import Loading from '../../Shared/Loading/Loading';
 
@@ -15,10 +16,10 @@ const MyOrders = () => {
         }
     }).then(res => res.json()));
 
-    console.log(orders);
     if (isLoading) {
         return <Loading />
     }
+    console.log(orders);
     return (
         <div>
             {
@@ -32,6 +33,8 @@ const MyOrders = () => {
                                     <th>tools</th>
                                     <th>Quantity</th>
                                     <th>Email</th>
+                                    <th>payment</th>
+                                    <th>price</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -44,6 +47,11 @@ const MyOrders = () => {
                                         <td>{order?.tool}</td>
                                         <td>{order?.order}</td>
                                         <td>{order?.email}</td>
+                                        <td>{order?.price}</td>
+                                        <td>{(order.price && !order.paid) && <Link to={`/dashboard/payment/${order._id}`}> <button className='btn btn-xs btn-success'>pay</button></Link>}
+
+                                            {(order.price && order.paid) && <span className='text-success'>paid</span>}</td>
+
                                         <td><FontAwesomeIcon icon={faTrashCan} /></td>
                                     </tr>
 

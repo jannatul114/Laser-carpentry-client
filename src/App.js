@@ -21,8 +21,11 @@ import AddReview from './Components/Pages/Dashboard/AddReview';
 import MyOrders from './Components/Pages/Dashboard/MyOrders';
 import MyPortfolio from './Components/Pages/MyPortfolio/MyPortfolio';
 import MyProfile from './Components/Pages/Dashboard/MyProfile';
-import AllUsers from './Components/Pages/Dashboard/AllUsers';
+import MakeAdmin from './Components/Pages/Dashboard/MakeAdmin';
 import RequireAdmin from './Components/Pages/Authintications/RequireAdmin/RequireAdmin';
+import AddTools from './Components/Pages/Dashboard/AddTools';
+import ManageTools from './Components/Pages/Dashboard/ManageTools';
+import Payment from './Components/Pages/Dashboard/Payment';
 
 
 function App() {
@@ -49,7 +52,10 @@ function App() {
           <Route index element={<MyProfile />}></Route>
           <Route path='addreview' element={<AddReview />}></Route>
           <Route path='myorders' element={<MyOrders />}></Route>
-          <Route path='allusers' element={<RequireAdmin><AllUsers /></RequireAdmin>}></Route>
+          <Route path='payment/:id' element={<Payment />}></Route>
+          <Route path='makeadmin' element={<RequireAdmin><MakeAdmin /></RequireAdmin>}></Route>
+          <Route path='addtools' element={<RequireAdmin><AddTools /></RequireAdmin>}></Route>
+          <Route path='managetools' element={<RequireAdmin><ManageTools /></RequireAdmin>}></Route>
         </Route>
         <Route path='myportfolio' element={<MyPortfolio />}></Route>
       </Routes>

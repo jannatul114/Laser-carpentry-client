@@ -23,14 +23,17 @@ const Purchase = () => {
 
     const handlePurchase = handleSubmit(async (data, event) => {
         event.preventDefault();
-        console.log(data);
+        const order = data?.order;
+        const itemPrice = item?.price;
+        const cost = parseFloat(order * itemPrice).toFixed(2)
+        const postionTtems = { ...data, price: cost, tool: item.name }
 
         fetch(`https://fierce-sands-20967.herokuapp.com/orders`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify(postionTtems)
         })
             .then(res => res.json())
             .then(data => console.log(data))
@@ -40,11 +43,9 @@ const Purchase = () => {
     return (
         <section className='py-10 px-2'>
             <h2 className='text-center text-4xl text-orange-500 font-bold my-5'>You are booking for: {item.name}</h2>
-
             {
                 item?.img ? <ItemDetails item={item} /> : <Loading />
             }
-
 
             <div className='p-3 my-10'>
                 <form onSubmit={handlePurchase} className='lg:w-1/2 w-full mx-auto shadow-lg p-4 rounded-xl'>
@@ -59,13 +60,7 @@ const Purchase = () => {
                             <input type="text" value={user?.displayName} readOnly {...register("name")} className="input input-bordered w-full" />
                         </div>
 
-                        <div className="form-control w-full">
-                            <label className="label">
-                                <span className="label-text">Tools Name</span>
-                            </label>
 
-                            <input type="text" value={item?.name} readOnly {...register("tool")} className="input input-bordered w-full" />
-                        </div>
 
                         <div className="form-control w-full">
                             <label className="label">
