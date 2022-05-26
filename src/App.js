@@ -26,6 +26,7 @@ import RequireAdmin from './Components/Pages/Authintications/RequireAdmin/Requir
 import AddTools from './Components/Pages/Dashboard/AddTools';
 import ManageTools from './Components/Pages/Dashboard/ManageTools';
 import Payment from './Components/Pages/Dashboard/Payment';
+import ManageAllOrders from './Components/Pages/Dashboard/ManageAllOrders';
 
 
 function App() {
@@ -56,6 +57,7 @@ function App() {
           <Route path='makeadmin' element={<RequireAdmin><MakeAdmin /></RequireAdmin>}></Route>
           <Route path='addtools' element={<RequireAdmin><AddTools /></RequireAdmin>}></Route>
           <Route path='managetools' element={<RequireAdmin><ManageTools /></RequireAdmin>}></Route>
+          <Route path='manageallorders' element={<RequireAdmin><ManageAllOrders /></RequireAdmin>}></Route>
         </Route>
         <Route path='myportfolio' element={<MyPortfolio />}></Route>
       </Routes>

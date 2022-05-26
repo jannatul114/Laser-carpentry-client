@@ -1,10 +1,5 @@
-import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
-import { useAuthState } from 'react-firebase-hooks/auth';
 import { useQuery } from 'react-query';
-import { toast } from 'react-toastify';
-import auth from '../../../firebase.init';
 import Loading from '../../Shared/Loading/Loading';
 import SingleUser from './SingleUser';
 

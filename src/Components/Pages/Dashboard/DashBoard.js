@@ -26,6 +26,7 @@ const DashBoard = () => {
                         {admin && <li><NavLink to={'/dashboard/makeadmin'}>Make Admin</NavLink></li>}
                         {admin && <li><NavLink to={'/dashboard/addtools'}>Add Tools</NavLink></li>}
                         {admin && <li><NavLink to={'/dashboard/managetools'}>Manage Tools</NavLink></li>}
+                        {admin && <li><NavLink to={'/dashboard/manageallorders'}>Manage All Orders</NavLink></li>}
                     </ul>
 
                 </div>
