@@ -4,7 +4,7 @@ import Loading from '../../Shared/Loading/Loading';
 import ManageSingleOrder from './ManageSingleOrder';
 
 const ManageAllOrders = () => {
-    const { data: allOrders, isLoading, refetch } = useQuery('manageAllOrder', () => fetch(`http://localhost:5000/manageorder`, {
+    const { data: allOrders, isLoading, refetch } = useQuery('manageAllOrder', () => fetch(`https://fierce-sands-20967.herokuapp.commanageorder`, {
         method: 'GET',
         headers: {
             authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -23,11 +23,12 @@ const ManageAllOrders = () => {
                         <table class="table ml-7 border-collapse border border-slate-500">
                             <thead className='border-collapse border border-slate-500'>
                                 <tr>
-                                    <th className='text-center'>1</th>
-
-                                    <th className='text-center'>Name</th>
-                                    <th className='text-center'>Price</th>
+                                    <th className='text-center'>0</th>
+                                    <th className='text-center'>customar</th>
+                                    <th className='text-center'>Tool</th>
+                                    <th className='text-center'>Email</th>
                                     <th className='text-center'>Quantity</th>
+                                    <th className='text-center'>Price</th>
                                     <th className='text-center'>Action</th>
                                 </tr>
                             </thead>
