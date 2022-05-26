@@ -7,12 +7,13 @@ const CheckoutForm = ({ orders }) => {
     const elements = useElements();
     const [cardError, setCardError] = useState('');
     const [success, setSuccess] = useState('');
+    const [processing, setProcessing] = useState(false);
     const [transactionId, setTransactionId] = useState('');
     const [clientSecret, setClientSecret] = useState('');
 
-    const { price, name, order, email } = orders;
+    const { price, name, email, _id } = orders;
     useEffect(() => {
-        fetch(`http://localhost:5000/create-payment-intent`, {
+        fetch(`https://fierce-sands-20967.herokuapp.com/create-payment-intent`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -49,7 +50,7 @@ const CheckoutForm = ({ orders }) => {
 
         setCardError(error?.message || '')
         setSuccess('');
-
+        setProcessing(true)
         const { paymentIntent, error: intentError } = await stripe.confirmCardPayment(
             clientSecret,
             {
@@ -65,7 +66,7 @@ const CheckoutForm = ({ orders }) => {
 
         if (intentError) {
             setCardError(intentError.message);
-            setSuccess('')
+            setProcessing(false)
 
         }
         else {
@@ -73,6 +74,25 @@ const CheckoutForm = ({ orders }) => {
             setTransactionId(paymentIntent.id)
             console.log(paymentIntent);
             setSuccess('Congrats! your payment is completed')
+
+            const payment = {
+                appoinment: _id,
+                transectionId: paymentIntent.id,
+            }
+
+            fetch(`https://fierce-sands-20967.herokuapp.com/orders/${_id}`, {
+                method: 'PATCH',
+                headers: {
+                    'content-type': 'application/json',
+                    'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+                },
+                body: JSON.stringify(payment)
+            })
+                .then(res => res.json())
+                .then(data => {
+                    setProcessing(false)
+                    console.log(data);
+                })
         }
 
     }

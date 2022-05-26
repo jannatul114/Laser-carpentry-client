@@ -7,7 +7,7 @@ import Loading from '../../Shared/Loading/Loading';
 
 const MyProfile = () => {
     const [user] = useAuthState(auth)
-    const { data: updatedUser, isLoading, refetch } = useQuery(['dbuser'], () => fetch(`http://localhost:5000/users/${user.email}`).then(res =>
+    const { data: updatedUser, isLoading, refetch } = useQuery(['dbuser'], () => fetch(`https://fierce-sands-20967.herokuapp.com/users/${user.email}`).then(res =>
         res.json())
     )
 
@@ -24,7 +24,7 @@ const MyProfile = () => {
         const city = event.target.city.value || updatedUser.city || '';
         const users = { name, email, education, city, phone, linkedin };
 
-        fetch(`http://localhost:5000/users/${user.email}`, {
+        fetch(`https://fierce-sands-20967.herokuapp.com/users/${user.email}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json',

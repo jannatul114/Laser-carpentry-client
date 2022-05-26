@@ -4,7 +4,7 @@ import Loading from '../../Shared/Loading/Loading';
 import SingleTool from './SingleTool';
 
 const ManageTools = () => {
-    const { data: tools, isLoading, refetch } = useQuery('manageTools', () => fetch(`http://localhost:5000/tools`, {
+    const { data: tools, isLoading, refetch } = useQuery('manageTools', () => fetch(`https://fierce-sands-20967.herokuapp.com/tools`, {
         method: 'GET',
         headers: {
             authorization: `Bearer ${localStorage.getItem('accessToken')}`

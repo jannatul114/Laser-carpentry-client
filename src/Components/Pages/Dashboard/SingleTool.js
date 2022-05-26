@@ -15,7 +15,7 @@ const SingleTool = ({ tool, index, refetch }) => {
         })
             .then((willDelete) => {
                 if (willDelete) {
-                    fetch(`http://localhost:5000/tools/${id}`, {
+                    fetch(`https://fierce-sands-20967.herokuapp.com/tools/${id}`, {
                         method: 'DELETE',
                         headers: {
                             authorization: `Bearer ${localStorage.getItem('accessToken')}`

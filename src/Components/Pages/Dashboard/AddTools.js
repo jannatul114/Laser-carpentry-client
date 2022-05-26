@@ -34,7 +34,7 @@ const AddTools = () => {
                         quantity: JSON.parse(data.quantity),
                         description: data.description
                     }
-                    fetch(`http://localhost:5000/tools`, {
+                    fetch(`https://fierce-sands-20967.herokuapp.com/tools`, {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json'

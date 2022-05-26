@@ -9,8 +9,8 @@ import Loading from '../../Shared/Loading/Loading';
 import SingleUser from './SingleUser';
 
 const MakeAdmin = () => {
-    const [user] = useAuthState(auth);
-    const { data: users, isLoading, refetch } = useQuery('users', () => fetch(`http://localhost:5000/users`, {
+
+    const { data: users, isLoading, refetch } = useQuery('users', () => fetch(`https://fierce-sands-20967.herokuapp.com/users`, {
         method: 'GET',
         headers: {
             authorization: `Bearer ${localStorage.getItem('accessToken')}`

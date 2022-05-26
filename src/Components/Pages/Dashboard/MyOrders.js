@@ -4,12 +4,13 @@ import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
+import swal from 'sweetalert';
 import auth from '../../../firebase.init';
 import Loading from '../../Shared/Loading/Loading';
 
 const MyOrders = () => {
     const [user] = useAuthState(auth)
-    const { data: orders, isLoading, refetch } = useQuery('orders', () => fetch(`http://localhost:5000/orders?email=${user.email}`, {
+    const { data: orders, isLoading, refetch } = useQuery('orders', () => fetch(`https://fierce-sands-20967.herokuapp.com/orders?email=${user.email}`, {
         method: 'GET',
         headers: {
             authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -19,7 +20,32 @@ const MyOrders = () => {
     if (isLoading) {
         return <Loading />
     }
-    console.log(orders);
+
+    const handlecancelOrder = (id) => {
+        swal({
+            title: "Are you sure you want to Delete Order?",
+
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    swal("Poof! Your imaginary file has been deleted!", {
+                        icon: "success",
+                    });
+                    fetch(`https://fierce-sands-20967.herokuapp.com/orders/${id}`, {
+                        method: 'DELETE'
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            refetch()
+                        })
+                } else {
+
+                }
+            });
+    }
     return (
         <div>
             {
@@ -52,7 +78,7 @@ const MyOrders = () => {
 
                                             {(order.price && order.paid) && <span className='text-success'>paid</span>}</td>
 
-                                        <td><FontAwesomeIcon icon={faTrashCan} /></td>
+                                        <td>{!order.paid && <FontAwesomeIcon className='' onClick={() => handlecancelOrder(order?._id)} icon={faTrashCan} />}</td>
                                     </tr>
 
                                     )
