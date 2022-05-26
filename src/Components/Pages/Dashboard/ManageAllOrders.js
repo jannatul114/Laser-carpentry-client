@@ -4,7 +4,7 @@ import Loading from '../../Shared/Loading/Loading';
 import ManageSingleOrder from './ManageSingleOrder';
 
 const ManageAllOrders = () => {
-    const { data: allOrders, isLoading, refetch } = useQuery('manageAllOrder', () => fetch(`https://fierce-sands-20967.herokuapp.commanageorder`, {
+    const { data: allOrders, isLoading, refetch } = useQuery('manageAllOrder', () => fetch(`https://fierce-sands-20967.herokuapp.com/manageorder`, {
         method: 'GET',
         headers: {
             authorization: `Bearer ${localStorage.getItem('accessToken')}`
